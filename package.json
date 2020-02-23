@@ -1,0 +1,16 @@
+{
+  "name": "jss-disconnected-graphql",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Adam Lamarre",
+  "license": "ISC",
+  "dependencies": {
+    "@sitecore-jss/sitecore-jss-manifest": "~12.0.0",
+    "express-graphql": "^0.9.0",
+    "graphql": "~14.5.7"
+  }
+}
