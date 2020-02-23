@@ -6,6 +6,7 @@ Read more about how this project [here](https://www.adamlamarre.com/disconnected
 ## Getting Started
 * `npm install https://github.com/erzr/jss-disconnected-graphql.git`
 * Copy [this](https://gist.github.com/erzr/c21d2a2ac5e0c55d13a6d9bda0d22995) Gist into your `scripts` folder.
+* Change your import for `createDefaultDisconnectedServer` in `scripts/disconnected-mode-proxy.js` to `require('./create-default-disconnected-server');`
 * Open `src/setupProxy.js`, add the following line in the `isDisconnected` condition:
 ```
 app.use(proxy(config.graphQLEndpoint, { target: proxyUrl }));
