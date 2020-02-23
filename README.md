@@ -11,4 +11,5 @@ Read more about how this project [here](https://www.adamlamarre.com/disconnected
 ```
 app.use(proxy(config.graphQLEndpoint, { target: proxyUrl }));
 ```
-Enjoy!
+* Navigate to `http://localhost:3000/api/appName`, where `appName` is the name of your JSS application, check `graphQLEndpointPath` at `src/temp/config.js` if you are unsure.
+* Enjoy!
