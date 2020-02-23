@@ -76,9 +76,11 @@ const convertRoutes = (routes, parent, templateLookup) => {
     const mapped = routes.map(route => {
         const id = route.id || route.name;
         const templateName = route.template || templateLookup.defaultRouteTemplateName;
-        const resolvedTemplate = templateLookup.templates[templateName];
+        let resolvedTemplate = templateLookup.templates[templateName];
 
         if (!resolvedTemplate) {
+            // Looks like if a template has no fields, it does not end up in the manifest. Warn and mock one...
+            resolvedTemplate = { name: templateName, fields: [] };
             console.warn(`Unable to locate template: ${templateName}`);
         }
 

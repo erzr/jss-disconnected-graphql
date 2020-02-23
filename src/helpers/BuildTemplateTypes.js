@@ -8,16 +8,20 @@ const buildTemplateType = (context, template) => {
     const itemTypeConfig = itemType.toConfig();
     const fieldMapping = itemTypeConfig.fields;
 
-    template.fields.forEach(field => {
-        const fieldType = context.getFieldType(field.type);
-        fieldMapping[field.name] = {
-            type: fieldType,
-            resolve: (source) => {
-                const foundField = source.fields.find(f => f.name === field.name);
-                return foundField;
+    if (template.fields) {
+        template.fields.forEach(field => {
+            const fieldType = context.getFieldType(field.type);
+            if (fieldType) {
+                fieldMapping[field.name] = {
+                    type: fieldType,
+                    resolve: (source) => {
+                        const foundField = source.fields.find(f => f.name === field.name);
+                        return foundField;
+                    }
+                }
             }
-        }
-    });
+        });
+    }
 
     const objectTypeName = SanitizeTemplateName(template.name);
 
