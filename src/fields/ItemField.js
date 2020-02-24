@@ -4,6 +4,7 @@ const {
     GraphQLInterfaceType,
     GraphQLBoolean
 } = require('graphql');
+const { GraphQLJSON, GraphQLJSONObject } = require('graphql-type-json');
 const { CommonFieldTypes } = require('@sitecore-jss/sitecore-jss-manifest');
 
 const getFieldMapping = () => {
@@ -38,6 +39,7 @@ const ItemField = new GraphQLInterfaceType({
 const AddItemFieldFields = function(additionalFields) {
     const fields = {
         name: { type: new GraphQLNonNull(GraphQLString) },
+        jss: { type: GraphQLJSON },
         displayName: { 
             type: new GraphQLNonNull(GraphQLString) ,
             resolve: (source) => {

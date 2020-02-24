@@ -64,7 +64,10 @@ const processFields = (itemFields, templateFields) => {
             }
             processedFields.push({
                 ...fieldOnItem,
-                templateField
+                templateField,
+                jss: {
+                    value: fieldOnItem.value
+                }
             })
         })
     }
