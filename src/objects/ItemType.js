@@ -68,7 +68,7 @@ const ItemType = (itemField) => {
             }
         }),
         resolveType: (value, context, info) => {
-            const template = value.dataSourceTemplate || 'App Route';
+            const template = value.templateName;
             const sanitizedTemplate = SanitizeTemplateName(template);
             const templateType = info.schema.getType(sanitizedTemplate);
             return templateType;
