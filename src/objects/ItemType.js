@@ -5,7 +5,8 @@ const {
     GraphQLNonNull,
     GraphQLInterfaceType,
     GraphQLBoolean,
-    GraphQLInputObjectType
+    GraphQLInputObjectType,
+    GraphQLInt
 } = require('graphql');
 const SanitizeTemplateName = require('../helpers/SanitizeTemplateName');
 
@@ -25,9 +26,21 @@ const ItemType = (itemField) => {
         fields: () => ({
             id: { type: GraphQLID },
             name: { type: GraphQLString },
-            children: { type: new GraphQLList(itemType) },
+            children: { 
+                type: new GraphQLList(itemType),
+                args: {
+                    requirePresentation: { type: GraphQLBoolean },
+                    includeTemplateIDs: { type: new GraphQLList(GraphQLString), defaultValue: [] },
+                    first: { type: GraphQLInt, defaultValue: null },
+                    after: { type: GraphQLID, defaultValue:null }
+                }
+            },
             hasChildren: {
                 type: GraphQLBoolean,
+                args: {
+                    requirePresentation: { type: GraphQLBoolean },
+                    includeTemplateIDs: { type: new GraphQLList(GraphQLString), defaultValue: [] }
+                },
                 resolve: (source) => {
                     return !!source.children;
                 }

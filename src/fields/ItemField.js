@@ -2,7 +2,10 @@ const {
     GraphQLString,
     GraphQLNonNull,
     GraphQLInterfaceType,
-    GraphQLBoolean
+    GraphQLBoolean,
+    GraphQLID,
+    GraphQLInt,
+    GraphQLObjectType
 } = require('graphql');
 const { GraphQLJSON, GraphQLJSONObject } = require('graphql-type-json');
 const { CommonFieldTypes } = require('@sitecore-jss/sitecore-jss-manifest');
@@ -28,7 +31,7 @@ const ItemField = new GraphQLInterfaceType({
     name: 'ItemField',
     fields: () => AddItemFieldFields(),
     resolveType: (source, context, info) => {
-        const {templateField} = source;
+        const { templateField } = source;
         const mapping = getFieldMapping();
         const mappedField = mapping[templateField.type];
         const mappedType = info.schema.getType(mappedField);
@@ -36,19 +39,41 @@ const ItemField = new GraphQLInterfaceType({
     }
 });
 
-const AddItemFieldFields = function(additionalFields) {
+const ItemTemplateField = new GraphQLObjectType({
+    name: 'ItemTemplateField',
+    fields: {
+        id: {
+            type: GraphQLID,
+            args: {
+                format: { type: GraphQLString, defaultValue: "N" }
+            }
+        },
+        name: { type: new GraphQLNonNull(GraphQLString) },
+        section: { type: new GraphQLNonNull(GraphQLString) },
+        sectionSortOrder: { type: new GraphQLNonNull(GraphQLInt) },
+        shared: { type: new GraphQLNonNull(GraphQLBoolean) },
+        sortOrder: { type: new GraphQLNonNull(GraphQLInt) },
+        source: { type: new GraphQLNonNull(GraphQLString) },
+        title: { type: new GraphQLNonNull(GraphQLString) },
+        type: { type: new GraphQLNonNull(GraphQLString) },
+        unversioned: { type: new GraphQLNonNull(GraphQLBoolean) }
+    }
+});
+
+const AddItemFieldFields = function (additionalFields) {
     const fields = {
         name: { type: new GraphQLNonNull(GraphQLString) },
         jss: { type: GraphQLJSON },
-        displayName: { 
-            type: new GraphQLNonNull(GraphQLString) ,
+        definition: { type: ItemTemplateField },
+        displayName: {
+            type: new GraphQLNonNull(GraphQLString),
             resolve: (source) => {
-                const {templateField} = source;
+                const { templateField } = source;
                 return (templateField && templateField.displayName) || source.name;
             }
         },
         value: { type: GraphQLString },
-        rendered: { 
+        rendered: {
             type: GraphQLString,
             resolve: (source) => {
                 return source.value;
