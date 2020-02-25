@@ -6,7 +6,7 @@ Read more about this project [here](https://www.adamlamarre.com/disconnected-mod
 
 ## Getting Started
 * `npm install https://github.com/erzr/jss-disconnected-graphql.git`
-* Copy the scripts located in the `scripts` directory of this repository to your application `scripts` directory. If you have not changed `disconnected-mode-proxy.js`, choose overwrite when prompted. Otherwise, diff and merge the changes into your existing file.
+* Copy the scripts located in the [scripts](https://github.com/erzr/jss-disconnected-graphql/tree/master/scripts) directory of this repository to your application `scripts` directory. If you have not changed `disconnected-mode-proxy.js`, choose overwrite when prompted. Otherwise, diff and merge the changes into your existing file.
 * Open `src/setupProxy.js`, add the following line in the `isDisconnected` condition:
 ```
 app.use(proxy(config.graphQLEndpoint, { target: proxyUrl }));
