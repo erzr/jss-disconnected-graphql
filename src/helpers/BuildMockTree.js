@@ -1,5 +1,5 @@
 
-const MockNode = function ({ id, name, templateName, parent, fields, excludeFromUrl }) {
+const MockNode = function ({ id, name, templateName, parent, fields, excludeFromUrl, layout }) {
     this.id = id;
     this.name = name;
     this.templateName = templateName;
@@ -7,6 +7,7 @@ const MockNode = function ({ id, name, templateName, parent, fields, excludeFrom
     this.fields = fields || [];
     this.children = [];
     this.excludeFromUrl = excludeFromUrl;
+    this.hasPresentation = layout && layout.renderings && layout.renderings.length;
     this.getUrl = () => {
         const pieces = [];
         let currentNode = this;
@@ -94,7 +95,8 @@ const convertRoutes = (routes, parent, templateLookup) => {
             name: route.name,
             templateName,
             parent,
-            fields: processedFields
+            fields: processedFields,
+            layout: route.layout
         });
 
         // Renderings are in a folder when they get imported, let's recreate this structure.

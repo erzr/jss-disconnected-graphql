@@ -33,6 +33,17 @@ const ItemType = (itemField) => {
                     includeTemplateIDs: { type: new GraphQLList(GraphQLString), defaultValue: [] },
                     first: { type: GraphQLInt, defaultValue: null },
                     after: { type: GraphQLID, defaultValue:null }
+                },
+                resolve: (source, { requirePresentation }) => {
+                    let children = source.children;
+
+                    if (children) {
+                        if (requirePresentation) {
+                            children = children.filter(child => child.hasPresentation);
+                        }
+                    }
+
+                    return children;
                 }
             },
             hasChildren: {
@@ -42,7 +53,15 @@ const ItemType = (itemField) => {
                     includeTemplateIDs: { type: new GraphQLList(GraphQLString), defaultValue: [] }
                 },
                 resolve: (source) => {
-                    return !!source.children;
+                    let children = source.children;
+
+                    if (children) {
+                        if (requirePresentation) {
+                            children = children.filter(child => child.hasPresentation);
+                        }
+                    }
+
+                    return children && children.length;
                 }
             },
             parent: { type: itemType },
