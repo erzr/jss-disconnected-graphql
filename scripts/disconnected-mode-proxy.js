@@ -23,7 +23,6 @@ const proxyOptions = {
   language: config.language,
   port: process.env.PROXY_PORT || 3042,
   onManifestUpdated: (manifest) => {
-    graphqlService.updateManifest(manifest);
     // if we can resolve the config file, we can alter it to force reloading the app automatically
     // instead of waiting for a manual reload. We must materially alter the _contents_ of the file to trigger
     // an actual reload, so we append "// reloadnow" to the file each time. This will not cause a problem,
