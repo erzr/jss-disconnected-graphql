@@ -1,17 +1,69 @@
 {
-  "name": "jss-disconnected-graphql",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+  "_from": "git+https://github.com/erzr/jss-disconnected-graphql.git",
+  "_id": "jss-disconnected-graphql@1.0.0",
+  "_inBundle": false,
+  "_integrity": "",
+  "_location": "/jss-disconnected-graphql",
+  "_phantomChildren": {
+    "arrify": "1.0.1",
+    "buffer-from": "1.1.1",
+    "caller-path": "2.0.0",
+    "camelcase": "5.3.1",
+    "code-point-at": "1.1.0",
+    "decamelize": "1.2.0",
+    "find-up": "3.0.0",
+    "glob": "7.1.6",
+    "graceful-fs": "4.1.15",
+    "is-fullwidth-code-point": "2.0.0",
+    "joi": "14.3.1",
+    "jsonfile": "4.0.0",
+    "lodash.unescape": "4.0.1",
+    "make-error": "1.3.5",
+    "minimist": "1.2.0",
+    "mkdirp": "0.5.4",
+    "number-is-nan": "1.0.1",
+    "os-locale": "3.1.0",
+    "require-directory": "2.1.1",
+    "set-blocking": "2.0.0",
+    "source-map-support": "0.5.16",
+    "universalify": "0.1.2",
+    "url-parse": "1.4.7",
+    "uuid": "3.3.3",
+    "which-module": "2.0.0",
+    "y18n": "4.0.0"
   },
-  "author": "Adam Lamarre",
-  "license": "ISC",
+  "_requested": {
+    "type": "git",
+    "raw": "https://github.com/erzr/jss-disconnected-graphql.git",
+    "rawSpec": "https://github.com/erzr/jss-disconnected-graphql.git",
+    "saveSpec": "git+https://github.com/erzr/jss-disconnected-graphql.git",
+    "fetchSpec": "https://github.com/erzr/jss-disconnected-graphql.git",
+    "gitCommittish": null
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "git+https://github.com/erzr/jss-disconnected-graphql.git#d86c83a715947c14d3cb75ed5acb1ff8ab16dfc0",
+  "_spec": "https://github.com/erzr/jss-disconnected-graphql.git",
+  "_where": "C:\\jss\\adamlamarredotcom",
+  "author": {
+    "name": "Adam Lamarre"
+  },
+  "bundleDependencies": false,
   "dependencies": {
     "@sitecore-jss/sitecore-jss-manifest": "~12.0.0",
     "express-graphql": "^0.9.0",
     "graphql": "~14.5.7",
     "graphql-type-json": "^0.3.1"
-  }
+  },
+  "deprecated": false,
+  "description": "Love working in disconnected mode but miss GraphQL functionality? Same. This project is an effort to try to bring some compatible level for GraphQL functionality to disconnected mode without forcing you to mock out JSON for the requests. This package will hook into manifest change events and build a schema that contains a lot of the same fields as you would get in connected mode GraphQL.",
+  "license": "ISC",
+  "main": "index.js",
+  "name": "jss-disconnected-graphql",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "version": "1.0.0"
 }

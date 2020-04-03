@@ -1,10 +1,8 @@
 const {
     GraphQLSchema
 } = require('graphql');
-const BuildTemplateTypes = require('./BuildTemplateTypes');
 
-module.exports = (context, queryType, templates) => {
-    const mappedTemplates = BuildTemplateTypes(context, templates);
+module.exports = (context, queryType, mappedTemplates) => {
     return new GraphQLSchema({
         query: queryType,
         types: [...mappedTemplates, ...context.options.fieldTypes]
